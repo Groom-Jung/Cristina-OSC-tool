@@ -1,0 +1,43 @@
+#this is for test
+
+#可以按照手册里的指令来写脚本，也可以用下面封装后的指令
+#注意不同的示波器的官方指令格式不一样，建议使用下文中封装后的指令
+CH1:LABel:NAMe "test1"
+CH1:LABel "test1"
+
+#设置ch1的label的名称为name
+label>>ch1>>name
+
+#等待2s
+wait
+
+#保存图形，路径使用的是面板上设置的路径
+save>>filename
+
+#测量ch1的频率、上升沿、下降沿、高电平、低电平并保存图片
+freq>>ch1
+wait
+save>>test1
+rise>>ch1
+wait
+save>>test1
+fall>>ch1
+wait
+save>>test1
+high>>ch1
+wait
+save>>test1
+low>>ch1
+wait
+save>>test1
+
+#一次性执行完频率、上升沿、下降沿、高电平、低电平的测试并存图
+time>>test_clk>>ch1
+
+#一次性执行完上升沿、下降沿、高电平、低电平的测试并存图
+data>>test_dat>>ch1
+
+#测量ch1的上升沿到ch2的下降沿的延时，然后保存到test_delay中
+delay>>ch1>>rise>>ch3>>fall
+wait
+save>>test_delay
